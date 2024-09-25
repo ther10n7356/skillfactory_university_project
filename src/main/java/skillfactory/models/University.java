@@ -1,6 +1,6 @@
 package skillfactory.models;
 
-import skillfactory.StudyProfile;
+import skillfactory.enums.StudyProfile;
 
 public class University {
     private final String id;

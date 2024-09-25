@@ -1,10 +1,13 @@
-package skillfactory;
+package skillfactory.enums;
 
 public enum StudyProfile {
 
     MEDICINE("Медицина"),
     IT("ИТ"),
-    PHYLOSOPHY("Философия");
+    LINGUISTICS("Лингвистика"),
+    PHYSICS("Физика"),
+    MATHEMATICS("Математика"),
+    PHILOSOPHY("Философия");
 
     private String name;
 
@@ -15,4 +18,6 @@ public enum StudyProfile {
     public String getName() {
         return name;
     }
+
+
 }

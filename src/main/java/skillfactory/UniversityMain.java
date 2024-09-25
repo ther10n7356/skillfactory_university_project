@@ -1,27 +1,22 @@
 package skillfactory;
 
+import skillfactory.controllers.XssFileController;
 import skillfactory.models.Student;
 import skillfactory.models.University;
+
+import java.util.List;
 
 public class UniversityMain {
 
     public static void main(String[] args) {
-        University university = new University.Builder()
-                .setId("1")
-                .setFullName("Московский государственный университет")
-                .setShortName("МГУ")
-                .setYearOfFoundation(6)
-                .setMainProfile(StudyProfile.PHYLOSOPHY)
-                .build();
+        String fileName = "src/main/resources/universityInfo.xlsx";
+        List<University> universities = XssFileController.readUniversityInfo(fileName);
+        List<Student> students = XssFileController.readStudentInfo(fileName);
 
-        Student student = new Student.Builder()
-                .setFullName("Иванов Иван")
-                .setUniversityId("1")
-                .setAvgExamScore(45.5f)
-                .setCurrentCourseNumber(2)
-                .build();
+        System.out.println("Университеты:");
+        universities.forEach(System.out::println);
 
-        System.out.println(university);
-        System.out.println(student);
+        System.out.println("Студенты:");
+        students.forEach(System.out::println);
     }
 }
