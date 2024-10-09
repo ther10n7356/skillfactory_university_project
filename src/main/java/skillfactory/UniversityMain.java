@@ -8,6 +8,7 @@ import skillfactory.enums.UniversityComparatorType;
 import skillfactory.models.Student;
 import skillfactory.models.University;
 import skillfactory.utils.ComparatorUtils;
+import skillfactory.utils.JsonUtil;
 
 import java.util.List;
 
@@ -17,6 +18,30 @@ public class UniversityMain {
         String fileName = "src/main/resources/universityInfo.xlsx";
         List<University> universities = XssFileController.readUniversityInfo(fileName);
         List<Student> students = XssFileController.readStudentInfo(fileName);
+
+        System.out.println("List of student in json format:");
+        String jsonStudents = JsonUtil.getJsonFromListStudents(students);
+        System.out.println(jsonStudents);
+        List<Student> newStudents = JsonUtil.getListStudentsFromJson(jsonStudents);
+        System.out.println(String.format("Equals old and new collections: %s", students.size() == newStudents.size()));
+
+        System.out.println("List of university in json format:");
+        String jsonUniversities = JsonUtil.getJsonFromListUniversities(universities);
+        System.out.println(jsonUniversities);
+        List<University> newUniversities = JsonUtil.getListUniversitiesFromJson(jsonUniversities);
+        System.out.println(String.format("Equals old and new collections: %s", universities.size() == newUniversities.size()));
+
+        universities.forEach(u -> {
+            String json = JsonUtil.getJsonFromUniversity(u);
+            System.out.println(json);
+            System.out.println(JsonUtil.getUniversityFromJson(json));
+        });
+
+        students.forEach(s -> {
+            String json = JsonUtil.getJsonFromStudent(s);
+            System.out.println(json);
+            System.out.println(JsonUtil.getStudentFromJson(json));
+        });
 
         System.out.println("Университеты:");
         IUniversityComparator universityComparator = ComparatorUtils.getUniversityComparator(UniversityComparatorType.STUDY_PROFILE_COMPARATOR);

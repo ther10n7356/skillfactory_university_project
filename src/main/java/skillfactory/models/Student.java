@@ -1,9 +1,15 @@
 package skillfactory.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Student {
+    @SerializedName("studentName")
     private final String fullName;
+    @SerializedName("universityIdentifier")
     private final String universityId;
+    @SerializedName("course")
     private final int currentCourseNumber;
+    @SerializedName("avgScore")
     private final float avgExamScore;
 
     public Student(String fullName, String universityId, int currentCourseNumber, float avgExamScore) {

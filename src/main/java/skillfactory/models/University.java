@@ -1,12 +1,18 @@
 package skillfactory.models;
 
+import com.google.gson.annotations.SerializedName;
 import skillfactory.enums.StudyProfile;
 
 public class University {
+    @SerializedName("universityIdentifier")
     private final String id;
+    @SerializedName("universityName")
     private final String fullName;
+    @SerializedName("universityShortName")
     private final String shortName;
+    @SerializedName("year")
     private final int yearOfFoundation;
+    @SerializedName("specialization")
     private final StudyProfile mainProfile;
 
     public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
