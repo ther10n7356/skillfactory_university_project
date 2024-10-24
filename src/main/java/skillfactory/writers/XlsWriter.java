@@ -9,12 +9,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XlsWriter {
+
+    private final static Logger log = Logger.getLogger(XlsWriter.class.getName());
 
     private XlsWriter() {};
 
     public static void generateXlsFile(List<Statistics> statistics, String pathFile){
+        log.info("Formatting data statistics");
         Workbook workbook = new XSSFWorkbook();
 
         Sheet sheet = workbook.createSheet("Статистика");
@@ -64,13 +69,16 @@ public class XlsWriter {
         }
 
 
+        log.info("Creating statistics file");
         File file = new File(pathFile);
 
         try (FileOutputStream outputStream = new FileOutputStream(file);){
             workbook.write(outputStream);
             workbook.close();
+            log.info("File created and statistics saved");
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "File writing failed", e);
+            System.exit(0);
         }
     }
 }

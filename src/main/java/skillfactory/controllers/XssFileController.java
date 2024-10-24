@@ -15,12 +15,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XssFileController {
+
+    private final static Logger log = Logger.getLogger(XssFileController.class.getName());
 
     private XssFileController() {}
 
     public static List<Student> readStudentInfo(String fileName) {
+        log.info("Start read sheet \"Студенты\" in file " + fileName);
         Map<Integer, List<String>> data = getDataSheet(fileName, "Студенты");
         List<Student> students = new ArrayList<>();
 
@@ -33,10 +38,12 @@ public class XssFileController {
                     .build()
             );
         }
+        log.info("Finish read sheet \"Student\" in file " + fileName);
         return students;
     }
 
     public static List<University> readUniversityInfo(String fileName) {
+        log.info("Start read sheet \"Университеты\" in file " + fileName);
         Map<Integer, List<String>> data = getDataSheet(fileName,"Университеты");
         List<University> universities = new ArrayList<>();
 
@@ -50,6 +57,7 @@ public class XssFileController {
                     .build()
             );
         }
+        log.info("Finish read sheet \"Университеты\" in file " + fileName);
         return universities;
     }
 
@@ -83,7 +91,7 @@ public class XssFileController {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Reading file failed", e);
         }
 
         return data;
