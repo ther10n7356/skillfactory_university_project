@@ -1,28 +1,25 @@
 package skillfactory.models;
 
 import com.google.gson.annotations.SerializedName;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 public class Student {
     @SerializedName("studentName")
-    private final String fullName;
+    private String fullName;
     @SerializedName("universityIdentifier")
-    private final String universityId;
+    private String universityId;
     @SerializedName("course")
-    private final int currentCourseNumber;
+    private int currentCourseNumber;
     @SerializedName("avgScore")
-    private final float avgExamScore;
+    private float avgExamScore;
 
-    public Student(String fullName, String universityId, int currentCourseNumber, float avgExamScore) {
-        this.fullName = fullName;
-        this.universityId = universityId;
-        this.currentCourseNumber = currentCourseNumber;
-        this.avgExamScore = avgExamScore;
-    }
-
+    @XmlElement(name = "studentName")
     public String getFullName() {
         return fullName;
     }
 
+    @XmlElement(name = "universityId")
     public String getUniversityId() {
         return universityId;
     }
@@ -31,41 +28,30 @@ public class Student {
         return currentCourseNumber;
     }
 
+    @XmlElement(name = "avgScore")
     public float getAvgExamScore() {
         return avgExamScore;
     }
 
-    public static class Builder {
-        private String fullName;
-        private String universityId;
-        private int currentCourseNumber;
-        private float avgExamScore;
-
-        public Builder setFullName(String fullName) {
-            this.fullName = fullName;
-            return this;
-        }
-
-        public Builder setUniversityId(String universityId) {
-            this.universityId = universityId;
-            return this;
-        }
-
-        public Builder setCurrentCourseNumber(int currentCourseNumber) {
-            this.currentCourseNumber = currentCourseNumber;
-            return this;
-        }
-
-        public Builder setAvgExamScore(float avgExamScore) {
-            this.avgExamScore = avgExamScore;
-            return this;
-        }
-
-        public Student build() {
-            return new Student(fullName, universityId, currentCourseNumber, avgExamScore);
-        }
+    public Student setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
     }
 
+    public Student setUniversityId(String universityId) {
+        this.universityId = universityId;
+        return this;
+    }
+
+    public Student setCurrentCourseNumber(int currentCourseNumber) {
+        this.currentCourseNumber = currentCourseNumber;
+        return this;
+    }
+
+    public Student setAvgExamScore(float avgExamScore) {
+        this.avgExamScore = avgExamScore;
+        return this;
+    }
 
     @Override
     public String toString() {

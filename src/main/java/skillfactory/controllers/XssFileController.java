@@ -30,12 +30,11 @@ public class XssFileController {
         List<Student> students = new ArrayList<>();
 
         for (List<String> listValues: data.values()) {
-            students.add(new Student.Builder()
+            students.add(new Student()
                     .setUniversityId(listValues.get(0))
                     .setFullName(listValues.get(1))
                     .setCurrentCourseNumber((int)Double.parseDouble(listValues.get(2)))
                     .setAvgExamScore(Float.parseFloat(listValues.get(3)))
-                    .build()
             );
         }
         log.info("Finish read sheet \"Student\" in file " + fileName);
@@ -48,13 +47,12 @@ public class XssFileController {
         List<University> universities = new ArrayList<>();
 
         for (List<String> listValues: data.values()) {
-            universities.add(new University.Builder()
+            universities.add(new University()
                     .setId(listValues.get(0))
                     .setFullName(listValues.get(1))
                     .setShortName(listValues.get(2))
                     .setYearOfFoundation((int)Double.parseDouble(listValues.get(3)))
                     .setMainProfile(StudyProfile.valueOf(listValues.get(4)))
-                    .build()
             );
         }
         log.info("Finish read sheet \"Университеты\" in file " + fileName);

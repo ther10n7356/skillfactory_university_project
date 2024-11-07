@@ -1,5 +1,6 @@
 package skillfactory.models;
 
+import jakarta.xml.bind.annotation.XmlElement;
 import skillfactory.enums.StudyProfile;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Statistics {
         this.nameOfUniversities = nameOfUniversities;
     }
 
+    @XmlElement(name = "universityProfile")
     public StudyProfile getStudyProfile() {
         return studyProfile;
     }
@@ -28,6 +30,7 @@ public class Statistics {
         this.studyProfile = studyProfile;
     }
 
+    @XmlElement(name = "avgScore")
     public float getAvgExamScore() {
         return avgExamScore;
     }

@@ -3,34 +3,32 @@ package skillfactory.models;
 import com.google.gson.annotations.SerializedName;
 import skillfactory.enums.StudyProfile;
 
+import jakarta.xml.bind.annotation.XmlElement;
+
 public class University {
     @SerializedName("universityIdentifier")
-    private final String id;
+    private String id;
     @SerializedName("universityName")
-    private final String fullName;
+    private  String fullName;
     @SerializedName("universityShortName")
-    private final String shortName;
+
+    private String shortName;
     @SerializedName("year")
-    private final int yearOfFoundation;
+    private int yearOfFoundation;
     @SerializedName("specialization")
-    private final StudyProfile mainProfile;
+    private StudyProfile mainProfile;
 
-    public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
-        this.id = id;
-        this.fullName = fullName;
-        this.shortName = shortName;
-        this.yearOfFoundation = yearOfFoundation;
-        this.mainProfile = mainProfile;
-    }
-
+    @XmlElement(name = "universityId")
     public String getId() {
         return id;
     }
 
+    @XmlElement(name = "universityName")
     public String getFullName() {
         return fullName;
     }
 
+    @XmlElement(name = "universityProfile")
     public String getShortName() {
         return shortName;
     }
@@ -43,41 +41,29 @@ public class University {
         return mainProfile;
     }
 
-    public static class Builder {
-        private String id;
-        private String fullName;
-        private String shortName;
-        private int yearOfFoundation;
-        private StudyProfile mainProfile;
+    public University setId(String id) {
+        this.id = id;
+        return this;
+    }
 
-        public Builder setId(String id) {
-            this.id = id;
-            return this;
-        }
+    public University setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
 
-        public Builder setFullName(String fullName) {
-            this.fullName = fullName;
-            return this;
-        }
+    public University setShortName(String shortName) {
+        this.shortName = shortName;
+        return this;
+    }
 
-        public Builder setShortName(String shortName) {
-            this.shortName = shortName;
-            return this;
-        }
+    public University setYearOfFoundation(int yearOfFoundation) {
+        this.yearOfFoundation = yearOfFoundation;
+        return this;
+    }
 
-        public Builder setYearOfFoundation(int yearOfFoundation) {
-            this.yearOfFoundation = yearOfFoundation;
-            return this;
-        }
-
-        public Builder setMainProfile(StudyProfile mainProfile) {
-            this.mainProfile = mainProfile;
-            return this;
-        }
-
-        public University build() {
-            return new University(id, fullName, shortName, yearOfFoundation, mainProfile);
-        }
+    public University setMainProfile(StudyProfile mainProfile) {
+        this.mainProfile = mainProfile;
+        return this;
     }
 
     @Override

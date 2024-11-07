@@ -1,10 +1,12 @@
 package skillfactory.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import skillfactory.models.Student;
 import skillfactory.models.University;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,35 +16,15 @@ public class JsonUtil {
 
     private JsonUtil() {}
 
-    public static String getJsonFromStudent(Student student) {
-        return gson.toJson(student);
+    public static String getJsonFromObject(Object object) {
+        return gson.toJson(object);
     }
 
-    public static String getJsonFromUniversity(University university) {
-        return gson.toJson(university);
+    public static String getJsonFromList(List<?> objects) {
+        return gson.toJson(objects);
     }
 
-    public static String getJsonFromListStudents(List<Student> students) {
-        return gson.toJson(students);
-    }
-
-    public static String getJsonFromListUniversities(List<University> universities) {
-        return gson.toJson(universities);
-    }
-
-    public static Student getStudentFromJson(String json) {
-        return gson.fromJson(json, Student.class);
-    }
-
-    public static University getUniversityFromJson(String json) {
-        return gson.fromJson(json, University.class);
-    }
-
-    public static List<Student> getListStudentsFromJson(String json) {
-        return gson.fromJson(json, new TypeToken<ArrayList<Student>>() {}.getType());
-    }
-
-    public static List<University> getListUniversitiesFromJson(String json) {
-        return gson.fromJson(json, new TypeToken<ArrayList<University>>() {}.getType());
+    public static <T> T getObjectFromJson(String json, Class<T> object) {
+        return gson.fromJson(json, object);
     }
 }
